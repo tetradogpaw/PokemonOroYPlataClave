@@ -6,6 +6,26 @@
 	"src":"icono.png",
 	"type":"image/png",
 	"sizes":"512x512"
+},
+{
+	"src":"icono.png",
+	"type":"image/png",
+	"sizes":"48x48"
+},
+{
+	"src":"icono.png",
+	"type":"image/png",
+	"sizes":"96x96"
+},
+{
+	"src":"icono.png",
+	"type":"image/png",
+	"sizes":"192x192"
+},
+{
+	"src":"icono.png",
+	"type":"image/png",
+	"sizes":"512x512"
 }
 
 
