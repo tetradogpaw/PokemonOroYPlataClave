@@ -1,0 +1,68 @@
+
+<html>
+<body>
+<script language="javascript">
+addEvent(window,'load',inicializar,false);
+
+
+function inicializar()
+{
+if(navigator.serviceworker)
+{
+navigator.serviceworker.register('/sw.js');
+}
+
+}
+	function CalculaClave()
+	{
+		const DIVISORBYTE=256;
+		const USHORTMAX=65535;
+		const A=65;
+		const a=97;
+		const ANintendo=128;
+		const aNintendo=160;
+		const CAMPOSNOMBREMAX=5;
+
+		var nombre=document.getElementById("inpNombre").value;
+		var id=document.getElementById("inpID").value;
+		var dinero=document.getElementById("inpDinero").value;
+		var clave=0;
+		
+		for(int i=0;i<nombre.length&&i<CAMPOSNOMBREMAX;i++)
+				if(nombre[i]>=a)
+					clave+=nombre[i]-a+aNintendo;
+				else
+					clave+=nombre[i]-A+ANintendo;
+			
+			while(id>USHORTMAX)
+				id-=USHORTMAX;
+			
+			clave+=(id/DIVISORBYTE)+(id%DIVISORBYTE);
+			
+			while(dinero>USHORTMAX)
+				dinero-=USHORTMAX;
+			
+			clave+=(dinero/DIVISORBYTE)+(dinero%DIVISORBYTE);
+
+		document.getElementById("lblClave").innerHTML =clave;
+
+	}
+</script>
+<table>
+<tbody>
+<tr>
+<td>Nombre</td>
+<td>&nbsp; &nbsp; ID &nbsp; &nbsp;</td>
+<td>DINERO</td>
+</tr>
+<tr>
+<td ><input id="inpNombre"></td>
+<td ><input id="inpID"></td>
+<td ><input id="inpDinero"></td>
+</tr>
+</tbody>
+</table>
+<label id="lblClave" >Clave</label>
+<button onclick="CalculaClave()" >Calcula</button>
+</body>
+</html>
