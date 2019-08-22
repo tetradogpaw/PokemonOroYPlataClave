@@ -1,0 +1,15 @@
+{
+"short_name":"Clave Pokemon",
+"name":"Clave cambio de hora pokemon oro y plata",
+"icons":[
+{
+	"src":"icono.png",
+	"type":"image/png",
+	"sizes":"512x512"
+}
+
+
+],
+"start_url":"index.html"
+
+}
