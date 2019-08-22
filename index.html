@@ -27,8 +27,8 @@ navigator.serviceworker.register('/sw.js');
 		var id=document.getElementById("inpID").value;
 		var dinero=document.getElementById("inpDinero").value;
 		var clave=0;
-		
-		for(int i=0;i<nombre.length&&i<CAMPOSNOMBREMAX;i++)
+		var i;
+		for(i=0;i<nombre.length&&i<CAMPOSNOMBREMAX;i++)
 				if(nombre[i]>=a)
 					clave+=nombre[i]-a+aNintendo;
 				else
