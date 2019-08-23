@@ -7,7 +7,8 @@ self.addEventListener('install',e => {
 
 e.waituntil(cache.open(CACHE_INMUTABLE)
 	.then(cache=>{
-		for(var i=0;i<INMUTABLES.lenght;i++)
+         var i;
+		for(i=0;i<INMUTABLES.lenght;i++)
 		{
 			fetch(INMUTABLES[i]).then(resp=>{
 				cache.put(INMUTABLES[i],resp);
