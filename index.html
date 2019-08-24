@@ -51,13 +51,13 @@ navigator.serviceworker.register('sw.js');
 					clave+=c-A+ANintendo;
 		}
 
-		while(id>USHORTMAX)
-		      id-=USHORTMAX;
+		
+		id%=USHORTMAX;
 			
 		clave+=Math.floor(id/DIVISORBYTE)+(id%DIVISORBYTE);
 			
-		while(dinero>USHORTMAX)
-		      dinero-=USHORTMAX;
+		
+		dinero%=USHORTMAX;
 			
 		clave+=Math.floor(dinero/DIVISORBYTE)+(dinero%DIVISORBYTE);
 
