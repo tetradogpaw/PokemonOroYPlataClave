@@ -1,90 +1,99 @@
-
 <html>
+
 <head>
-<link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="manifest.json">
 
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="application-name" content="Clave Pokemon ORO y PLATA">
-<meta name="apple-mobile-web-app-title" content="Clave Pokemon ORO y PLATA">
-<meta name="msapplication-starturl" content="/index.html">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Clave Pokemon ORO y PLATA">
+    <meta name="apple-mobile-web-app-title" content="Clave Pokemon ORO y PLATA">
+    <meta name="msapplication-starturl" content="/index.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="icon" type="image/png" sizes="512x512" href="icono.png">
-<link rel="apple-touch-icon" type="image/png" sizes="512x512" href="icono.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icon.png">
+    <link rel="apple-touch-icon" type="image/png" sizes="512x512" href="icono.png">
 </head>
+
 <body>
-<script language="javascript">
-addEvent(window,'load',inicializar,false);
+    <script language="javascript">
+        window.addEventListener("load", inicializar);
+
+        function inicializar() {
+            if (navigator.serviceworker) {
+                navigator.serviceworker.register('sw.js');
+            }
+
+        }
+
+        function CalculaClave() {
+            const DIVISORBYTE = 256;
+            const USHORTMAX = 65535;
+            const A = 65;
+            const a = 97;
+            const ANintendo = 128;
+            const aNintendo = 160;
+            const CAMPOSNOMBREMAX = 5;
+
+            var nombre = document.getElementById("inpNombre").value;
+            var idTxt = document.getElementById("inpID").value;
+            var dineroTxt = document.getElementById("inpDinero").value;
+            var id;
+            var dinero;
+            var clave = 0;
+            var i;
+            var c;
+
+            if (nombre != "" && idTxt != "" && dineroTxt != "") {
+                id = parseInt(idTxt);
+                dinero = parseInt(dineroTxt);
+
+                for (i = 0; i < nombre.length && i < CAMPOSNOMBREMAX; i++) {
+                    c = nombre.charCodeAt(i);
+                    if (c >= a)
+                        clave += c - a + aNintendo;
+                    else
+                        clave += c - A + ANintendo;
+                }
 
 
-function inicializar()
-{
-if(navigator.serviceworker)
-{
-navigator.serviceworker.register('sw.js');
-}
+                id %= USHORTMAX;
 
-}
-	function CalculaClave()
-	{
-		const DIVISORBYTE=256;
-		const USHORTMAX=65535;
-		const A=65;
-		const a=97;
-		const ANintendo=128;
-		const aNintendo=160;
-		const CAMPOSNOMBREMAX=5;
+                clave += Math.floor(id / DIVISORBYTE) + (id % DIVISORBYTE);
 
-		var nombre=document.getElementById("inpNombre").value;
-		var id=parseInt(document.getElementById("inpID").value);
-		var dinero=parseInt(document.getElementById("inpDinero").value);
-		var clave=0;
-		var i;
-		var c;
 
-		for(i=0;i<nombre.length&&i<CAMPOSNOMBREMAX;i++){
-				c=nombre.charCodeAt(i);
-				if(c>=a)
-					clave+=c-a+aNintendo;
-				else
-					clave+=c-A+ANintendo;
-		}
+                dinero %= USHORTMAX;
 
-		
-		id%=USHORTMAX;
-			
-		clave+=Math.floor(id/DIVISORBYTE)+(id%DIVISORBYTE);
-			
-		
-		dinero%=USHORTMAX;
-			
-		clave+=Math.floor(dinero/DIVISORBYTE)+(dinero%DIVISORBYTE);
+                clave += Math.floor(dinero / DIVISORBYTE) + (dinero % DIVISORBYTE);
 
-		document.getElementById("lblClave").innerHTML =clave;
+                document.getElementById("lblClave").innerHTML = clave;
+            } else console.error("parametros vacios, imposible calcular clave!");
+        }
+    </script>
+    <table>
+        <tbody>
+            <tr>
+                <td>Nombre</td>
+                <td><input id="inpNombre" placeholder="Nombre"></td>
+            </tr>
+            <tr>
+                <td>ID</td>
+                <td><input id="inpID" placeholder="ID"></td>
+            </tr>
+            <tr>
+                <td>DINERO</td>
+                <td><input id="inpDinero" placeholder="Dinero"></td>
+            </tr>
+            <tr>
+                <td><label>Clave</label></td>
+                <td><label id="lblClave" stle="min-height:25px"></label></td>
 
-	}
-</script>
-<table>
-<tbody>
-<tr>
-<td>Nombre</td>
-<td ><input id="inpNombre"></td>
-</tr>
-<tr>
-<td>ID</td>
-<td ><input id="inpID"></td>
-</tr>
-<tr>
-<td>DINERO</td>
-<td ><input id="inpDinero"></td>
-</tr>
-<tr>
-<td ><label id="lblClave" >Clave</label></td>
-<td ><button onclick="CalculaClave()" >Calcula</button></td>
-</tr>
-</tbody>
-</table>
+            </tr>
+            <tr>
+                <td><button onclick="CalculaClave()">Calcula</button></td>
+            </tr>
+        </tbody>
+    </table>
 
 </body>
+
 </html>
