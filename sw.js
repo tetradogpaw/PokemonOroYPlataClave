@@ -1,6 +1,6 @@
 const CACHE_VERSION = 4;
 const CACHE_INMUTABLE = "CACHE_INMUTABLE";
-const INMUTABLES = ["/", "index.html"];
+const INMUTABLES = ["index.html"];
 
 
 self.addEventListener('install', e => {
@@ -15,6 +15,10 @@ self.addEventListener('install', e => {
 
 
 self.addEventListener('fetch', e => {
-    e.respondWith(caches.match(e.request));
+    var url;
+    if (e.request.url == "/")
+        url = "index.html";
+    else url = e.request.url;
+    e.respondWith(caches.match(url));
 
 });
