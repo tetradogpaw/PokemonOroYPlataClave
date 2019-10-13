@@ -5,7 +5,7 @@ const INMUTABLES = ["/", "index.html"];
 
 self.addEventListener('install', e => {
 
-    e.waituntil(caches.open(CACHE_INMUTABLE)
+    e.waitUntil(caches.open(CACHE_INMUTABLE)
         .then(cache => {
             return cache.addAll(INMUTABLES);
 
