@@ -1,6 +1,6 @@
 const CACHE_VERSION = 3;
 const CACHE_INMUTABLE = "CACHE_INMUTABLE";
-const INMUTABLES = ["/", "index.html"];
+const INMUTABLES = ["index.html"];
 
 
 self.addEventListener('install', e => {
