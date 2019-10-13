@@ -29,6 +29,7 @@ self.addEventListener('fetch', e => {
     if (e.request.url == "/")
         url = "index.html";
     else url = e.request.url;
+    console.log(url);
     e.respondWith(caches.match(url));
 
 });
