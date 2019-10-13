@@ -18,12 +18,12 @@ self.addEventListener('fetch', e => {
 
     var url;
     if (String(e.request.url).includes("PokemonOroYPlataClave"))
-        url = String(e.request.url).substr("https://tetradogpaw.github.io/".length);
+        url = String(e.request.url).substr("https://tetradogpaw.github.io".length);
     else url = e.request.url;
 
     console.log(url);
 
-    if (url == "PokemonOroYPlataClave/")
+    if (url == "/PokemonOroYPlataClave/")
         url += "index.html";
 
     console.log(url);
