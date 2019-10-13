@@ -1,6 +1,7 @@
 const CACHE_VERSION = 6;
 const CACHE_INMUTABLE = "CACHE_INMUTABLE";
-const INMUTABLES = ["/index.html", "/icon.png", "/manifest.json"];
+const CACHE_DINAMICO = "CACHE_DINAMICO";
+const INMUTABLES = [];
 
 
 self.addEventListener('install', e => {
@@ -16,6 +17,18 @@ self.addEventListener('install', e => {
 
 self.addEventListener('fetch', e => {
 
-    e.respondWith(caches.match(e.request));
+    e.respondWith(caches.match(e.request).then(resp => {
+        var respuesta;
+        if (resp)
+            respuesta = resp;
+        else {
+            respuesta = fetch(e.request);
+            caches.open(CACHE_DINAMICO).then(cache => {
+                cache.put(e.request, respuesta.clone());
+            });
+        }
+        return respuesta;
+
+    }));
 
 });
