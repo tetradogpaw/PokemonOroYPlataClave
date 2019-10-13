@@ -11,7 +11,7 @@ self.addEventListener('install', e => {
                 for (i in CACHE_INMUTABLE) {
                     fetch(CACHE_INMUTABLE[i]).then((resp) => {
 
-                            cache.put(resp, CACHE_INMUTABLE[i]);
+                            cache.put(CACHE_INMUTABLE[i], resp);
                         }
 
                     ).catch(reject);
