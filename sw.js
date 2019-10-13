@@ -1,4 +1,4 @@
-const CACHE_VERSION = 3;
+const CACHE_VERSION = 4;
 const CACHE_INMUTABLE = "CACHE_INMUTABLE";
 const INMUTABLES = ["index.html"];
 
