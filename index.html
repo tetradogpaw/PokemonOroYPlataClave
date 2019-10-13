@@ -19,8 +19,8 @@
 
         function inicializar() {
 
-            if (navigator.serviceworker) {
-                navigator.serviceworker.register('https://tetradogpaw.github.io/PokemonOroYPlataClave/sw.js')
+            if ('serviceWorker' in navigator) {
+                navigator.serviceworker.register('sw.js')
                     .then(() => console.log("registrado :)"))
                     .catch(console.error);
             }
