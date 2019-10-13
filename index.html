@@ -20,7 +20,7 @@
         function inicializar() {
 
             if ('serviceWorker' in navigator) {
-                navigator.serviceworker.register('sw.js')
+                navigator.serviceWorker.register('sw.js')
                     .then(() => console.log("registrado :)"))
                     .catch(console.error);
             }
