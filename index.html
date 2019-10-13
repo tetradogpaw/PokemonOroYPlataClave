@@ -21,8 +21,8 @@
 
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.getRegistration().then((r) => {
-                    console.log(r);
-                    navigator.serviceWorker.register('sw.js')
+                    if (r == undefined)
+                        navigator.serviceWorker.register('sw.js')
                         .then(() => console.log("registrado :)"))
                         .catch(console.error);
                 });
