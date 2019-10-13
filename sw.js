@@ -7,7 +7,7 @@ self.addEventListener('install', e => {
 
     e.waitUntil(caches.open(CACHE_INMUTABLE)
         .then(cache => {
-            return cache.addAll(INMUTABLES);
+            return cache.addAll(INMUTABLES).then(() => { cache.put("/", cache[INMUTABLES[0]]); });
 
         }));
 
@@ -23,10 +23,6 @@ self.addEventListener('fetch', e => {
 
     console.log(url);
 
-    if (url == "/PokemonOroYPlataClave/")
-        url += "index.html";
-
-    console.log(url);
     e.respondWith(caches.match(url));
 
 });
