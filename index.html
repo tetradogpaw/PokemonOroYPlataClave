@@ -20,9 +20,7 @@
 
         function inicializar() {
             if (navigator.serviceworker) {
-                navigator.serviceworker.register('https://tetradogpaw.github.io/PokemonOroYPlataClave/sw.js', {
-                    scope: '/'
-                });
+                navigator.serviceworker.register('https://tetradogpaw.github.io/PokemonOroYPlataClave/sw.js');
             }
 
         }
