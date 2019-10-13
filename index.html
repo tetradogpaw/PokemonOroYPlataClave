@@ -19,10 +19,11 @@
         window.addEventListener("load", inicializar);
 
         function inicializar() {
+
             if (navigator.serviceworker) {
                 navigator.serviceworker.register('https://tetradogpaw.github.io/PokemonOroYPlataClave/sw.js');
             }
-
+            CargarCampos();
         }
 
         function CalculaClave() {
@@ -66,7 +67,21 @@
                 clave += Math.floor(dinero / DIVISORBYTE) + (dinero % DIVISORBYTE);
 
                 document.getElementById("lblClave").innerHTML = clave;
+                GuardaCampos();
             } else console.error("parametros vacios, imposible calcular clave!");
+
+        }
+
+        function CargarCampos() {
+            document.getElementById("inpNombre").value = localStorage.getItem("nombre");
+            document.getElementById("inpID").value = localStorage.getItem("ID");
+            document.getElementById("inpDinero").value = localStorage.getItem("dinero");
+        }
+
+        function GuardaCampos() {
+            localStorage.setItem("nombre", document.getElementById("inpNombre").value);
+            localStorage.setItem("ID", document.getElementById("inpID").value);
+            localStorage.setItem("dinero", document.getElementById("inpDinero").value);
         }
     </script>
     <table>
