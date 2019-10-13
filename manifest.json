@@ -12,7 +12,7 @@
     }
   ],
     "serviceworker": {
-        "src": "sw.js",
+        "src": "sw.js"
 
     }
 }
