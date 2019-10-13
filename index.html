@@ -20,7 +20,9 @@
 
         function inicializar() {
             if (navigator.serviceworker) {
-                navigator.serviceworker.register('sw.js');
+                navigator.serviceworker.register('sw.js', {
+                    scope: '/'
+                });
             }
 
         }
