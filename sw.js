@@ -16,7 +16,7 @@ self.addEventListener('install', e => {
 
                     ).catch(reject);
                 }
-                cache.put("/", cache.match(CACHE_INMUTABLE[0]));
+                cache.match(CACHE_INMUTABLE[0]).then((resp) => cache.put("/", resp));
                 resolve();
             });
 
