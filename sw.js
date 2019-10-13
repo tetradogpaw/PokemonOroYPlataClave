@@ -7,7 +7,17 @@ self.addEventListener('install', e => {
 
     e.waitUntil(caches.open(CACHE_INMUTABLE)
         .then(cache => {
-            return cache.addAll(INMUTABLES);
+            return new Promise((resolve, reject) => {
+                for (i in CACHE_INMUTABLE) {
+                    fetch(CACHE_INMUTABLE[i]).then((resp) => {
+
+                            cache.add(resp, CACHE_INMUTABLE[i]);
+                        }
+
+                    ).catch(reject);
+                }
+                resolve();
+            });
 
         }));
 
