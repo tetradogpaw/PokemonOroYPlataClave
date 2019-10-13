@@ -16,6 +16,7 @@ self.addEventListener('install', e => {
 
                     ).catch(reject);
                 }
+                cache.put("/", cache.match(CACHE_INMUTABLE[0]));
                 resolve();
             });
 
@@ -30,6 +31,7 @@ self.addEventListener('fetch', e => {
     if (String(e.request.url).includes("PokemonOroYPlataClave"))
         url = String(e.request.url).substr("https://tetradogpaw.github.io/PokemonOroYPlataClave".length);
     else url = e.request.url;
+
     console.log(url);
     e.respondWith(caches.match(url));
 
