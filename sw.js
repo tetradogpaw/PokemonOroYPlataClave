@@ -26,7 +26,7 @@ self.addEventListener('install', e => {
 
 self.addEventListener('fetch', e => {
     var url;
-    if (e.request.url == "/")
+    if (e.request.url == "https://tetradogpaw.github.io/PokemonOroYPlataClave/")
         url = "index.html";
     else url = e.request.url;
     console.log(url);
