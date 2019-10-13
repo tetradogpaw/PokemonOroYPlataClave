@@ -21,7 +21,7 @@
 
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.getRegistration().then((r) => {
-                    if (r.length == 0)
+                    if (r.length() == 0)
                         navigator.serviceWorker.register('sw.js')
                         .then(() => console.log("registrado :)"))
                         .catch(console.error);
