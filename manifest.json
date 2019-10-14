@@ -2,7 +2,7 @@
     "name": "Clave Pokemon Plata y Oro",
     "short_name": "Clave Pokemon",
     "lang": "es",
-    "start_url": "/PokemonOroYPlata/",
+    "start_url": "/PokemonOroYPlataClave/",
     "display": "minimal-ui",
     "icons": [{
         "src": "icon.png",
