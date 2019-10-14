@@ -1,4 +1,4 @@
-const CACHE_VERSION = 7.9;
+const CACHE_VERSION = 8.0;
 const CACHE_INMUTABLE = "CACHE_INMUTABLE";
 const CACHE_DINAMICO = "CACHE_DINAMICO";
 const INMUTABLES = [];
@@ -16,7 +16,7 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', e => {
-    var inmutable = new Primise((okey, error) => {
+    var inmutable = new Promise((okey, error) => {
         caches.open(CACHE_INMUTABLE).then(cache => {
             cache.keys.forEach(key => {
                 cache.delete(key);
@@ -25,7 +25,7 @@ self.addEventListener('activate', e => {
             okey();
         });
     });
-    var dinamico = new Primise((okey, error) => {
+    var dinamico = new Promise((okey, error) => {
         caches.open(CACHE_DINAMICO).then(cache => {
             cache.keys.forEach(key => {
                 cache.delete(key);
