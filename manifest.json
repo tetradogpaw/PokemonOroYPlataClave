@@ -1,16 +1,14 @@
 {
-  "name": "Clave Pokemon Plata y Oro",
-  "short_name": "Clave Pokemon",
-  "lang": "es",
-  "start_url": "/PokemonOroYPlataClave/index.html",
-  "display": "minimal-ui",
-  "icons": [
-    {
-      "src": "icon.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
+    "name": "Clave Pokemon Plata y Oro",
+    "short_name": "Clave Pokemon",
+    "lang": "es",
+    "start_url": "/",
+    "display": "minimal-ui",
+    "icons": [{
+        "src": "icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }],
     "serviceworker": {
         "src": "sw.js"
 
