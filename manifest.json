@@ -3,7 +3,7 @@
     "short_name": "Clave Pokemon",
     "lang": "es",
     "start_url": "/PokemonOroYPlataClave/",
-    "display": "minimal-ui",
+    "display": "standalone",
     "icons": [{
         "src": "icon.png",
         "sizes": "512x512",
