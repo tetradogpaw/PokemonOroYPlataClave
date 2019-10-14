@@ -47,12 +47,12 @@ self.addEventListener('fetch', e => {
 
 function DeleteCache(name) {
     return new Promise((okey, error) => {
-            caches.open(name).then(cache => {
-                cache.keys().forEach(key => {
-                    cache.delete(key);
+        caches.open(name).then(cache => {
+            cache.keys().forEach(key => {
+                cache.delete(key);
 
-                });
-                okey();
             });
-        }
-    }
+            okey();
+        });
+    });
+}
