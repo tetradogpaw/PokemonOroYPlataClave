@@ -17,22 +17,22 @@ self.addEventListener('install', e => {
 
 self.addEventListener('fetch', e => {
 
-            e.respondWith(caches.match(e.request).then(resp => {
-                    var respuesta;
-                    if (resp)
-                        respuesta = resp;
-                    else {
-                        respuesta = fetch(e.request)
-                            .then(data => {
-                                    caches.open(CACHE_DINAMICO)
-                                        .then(cache => {
-                                            cache.put(e.request, data.clone());
-                                            return data;
-                                        })
-                                );
-                            }
-                        return respuesta;
+    e.respondWith(caches.match(e.request).then(resp => {
+        var respuesta;
+        if (resp)
+            respuesta = resp;
+        else {
+            respuesta = fetch(e.request)
+                .then(data => {
+                    return caches.open(CACHE_DINAMICO)
+                        .then(cache => {
+                            cache.put(e.request, data.clone());
+                            return data;
+                        });
+                });
+        }
+        return respuesta;
 
-                    }));
+    }));
 
-            });
+});
