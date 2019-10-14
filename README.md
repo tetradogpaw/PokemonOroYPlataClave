@@ -1,3 +1,3 @@
 # PokemonOroYPlataClave
 
-https://tetradogpaw.github.io/PokemonOroYPlataClave/
+https://tetradogpwa.github.io/PokemonOroYPlataClave/
