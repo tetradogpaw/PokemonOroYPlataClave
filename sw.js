@@ -1,4 +1,4 @@
-const CACHE_VERSION = 8.0;
+const CACHE_VERSION = 8.1;
 const CACHE_INMUTABLE = "CACHE_INMUTABLE";
 const CACHE_DINAMICO = "CACHE_DINAMICO";
 const INMUTABLES = [];
@@ -16,25 +16,8 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', e => {
-    var inmutable = new Promise((okey, error) => {
-        caches.open(CACHE_INMUTABLE).then(cache => {
-            cache.keys.forEach(key => {
-                cache.delete(key);
 
-            });
-            okey();
-        });
-    });
-    var dinamico = new Promise((okey, error) => {
-        caches.open(CACHE_DINAMICO).then(cache => {
-            cache.keys.forEach(key => {
-                cache.delete(key);
-
-            });
-            okey();
-        });
-    });
-    Promise.all(inmutable, dinamico);
+    Promise.all(DeleteCache(CACHE_INMUTABLE), DeleteCache(CACHE_DINAMICO));
 
 
 
@@ -61,3 +44,15 @@ self.addEventListener('fetch', e => {
     }));
 
 });
+
+function DeleteCache(name) {
+    return new Promise((okey, error) => {
+            caches.open(name).then(cache => {
+                cache.keys().forEach(key => {
+                    cache.delete(key);
+
+                });
+                okey();
+            });
+        }
+    }
