@@ -17,7 +17,7 @@ self.addEventListener('install', e => {
 
 self.addEventListener('activate', e => {
 
-    Promise.all(DeleteCache(CACHE_INMUTABLE), DeleteCache(CACHE_DINAMICO));
+    e.waitUntil(Promise.all(DeleteCache(CACHE_INMUTABLE), DeleteCache(CACHE_DINAMICO)));
 
 
 
