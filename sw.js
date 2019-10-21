@@ -1,10 +1,10 @@
 const CACHE_VERSION_ANTERIOR = 6; //subo aqui para no tener problemas :D
 const CACHE_VERSION = CACHE_VERSION_ANTERIOR + 1;
-const APP="PokemonOroYPlataClave";
+const APP = "PokemonOroYPlataClave";
 
-const CACHE_INMUTABLE = "CACHE_INMUTABLE_"+APP;
-const CACHE_DINAMICO = "CACHE_DINAMICO_"+APP;
-const CACHE_DINAMICO = "CACHE_DINAMICO_"+APP;
+const CACHE_INMUTABLE = "CACHE_INMUTABLE_" + APP;
+const CACHE_DINAMICO = "CACHE_DINAMICO_" + APP;
+const CACHE_DINAMICO = "CACHE_DINAMICO_" + APP;
 const INMUTABLES = [
 
 ];
@@ -34,7 +34,7 @@ self.addEventListener('activate', e => {
     console.log("uninstalling version " + CACHE_VERSION_ANTERIOR);
     e.waitUntil(Promise.all([caches.delete(CACHE_INMUTABLE + CACHE_VERSION_ANTERIOR),
         caches.delete(CACHE_SHELL + CACHE_VERSION_ANTERIOR),
-        caches.delete(CACHE_DINAMICO)
+        caches.delete(CACHE_DINAMICO + CACHE_VERSION_ANTERIOR)
     ]));
 
 });
@@ -48,7 +48,7 @@ self.addEventListener('fetch', e => {
         else {
             respuesta = fetch(e.request)
                 .then(data => {
-                    return caches.open(CACHE_DINAMICO)
+                    return caches.open(CACHE_DINAMICO + CACHE_VERSION)
                         .then(cache => {
                             cache.put(e.request, data.clone());
                             return data;
