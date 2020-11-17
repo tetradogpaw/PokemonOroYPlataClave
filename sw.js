@@ -1,4 +1,4 @@
-const CACHE_VERSION_ANTERIOR = 6; //subo aqui para no tener problemas :D
+const CACHE_VERSION_ANTERIOR = 7; //subo aqui para no tener problemas :D
 const CACHE_VERSION = CACHE_VERSION_ANTERIOR + 1;
 const APP = "PokemonOroYPlataClave";
 
@@ -11,7 +11,6 @@ const INMUTABLES = [
 const SHELL = [
 
     "index.html",
-    "style.css",
     "images/icons/icon-144x144.png",
     "images/icons/icon-512x512.png",
     "sw.js",
